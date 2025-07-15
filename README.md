@@ -1,6 +1,8 @@
 # ⭐ Leave Management System ⭐
 
-Welcome to **Leave Management System**, a modern web application built with Laravel as the backend, React as the frontend, and MySQL as the database. Both Employee and Admin roles are supported with access through the web and APIs.
+Welcome to the **Leave Management System** — a sleek and modern web application designed to streamline leave management
+processes. Powered by **Laravel** (backend), **React** (frontend), and **MySQL** (database), it offers a seamless
+experience for both **Employees** and **Admins** through intuitive web interfaces and robust API access.
 
 ## 🛠️ Tech Stack
 
