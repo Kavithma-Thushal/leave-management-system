@@ -16,40 +16,36 @@ experience for both **Employees** and **Admins** through intuitive web interface
 ### 🔥 Backend
 
 ✅ Laravel<br/>
-✅ MySQL<br/>
 ✅ Laravel Passport<br/>
+✅ MySQL<br/>
 
 ## 🚀 Features
 
-User Roles
+### 👨‍💼 Employee
+✅ Register/Login<br/>
+✅ Apply for leave<br/>
+✅ View leave status<br/>
 
-1. Employee
+### 👨‍💻 Admin
+✅ Login<br/>
+✅ View all leave requests<br/>
+✅ Approve/Reject leave<br/>
+✅ View users & leave statistics<br/>
 
-- Register/Login
-- Apply for leave
-- View leave status
+## 🔗 API Endpoints (Laravel)
 
-2. Admin
+✅ POST /api/login<br/>
+✅ POST /api/register<br/>
+✅ GET /api/leaves<br/>
+✅ POST /api/leaves<br/>
+✅ PUT /api/leaves/{id}<br/>
+✅ GET /api/user<br/>
 
-- Login
-- View all leave requests
-- Approve/Reject leave
-- View users & leave statistics
+## 🌐 Web Views (React)
 
-API Endpoints (Laravel)
-
-- POST /api/login
-- POST /api/register
-- GET /api/leaves
-- POST /api/leaves
-- PUT /api/leaves/{id}
-- GET /api/user
-
-Web Views (React)
-
-- Login/Register Page
-- Employee Dashboard: Leave application form, Leave status list
-- Admin Dashboard: Leave approval list, Approve/Reject buttons, Users overview
+✅ Login/Register Page<br/>
+✅ Employee Dashboard: Leave application form, Leave status list<br/>
+✅ Admin Dashboard: Leave approval list, Approve/Reject buttons, Users overview<br/>
 
 ## 📬 Get in Touch
 
