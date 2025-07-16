@@ -46,7 +46,7 @@ class AuthService
         }
 
         // Create Token
-        $token = $user->createToken('ems')->accessToken;
+        $token = $user->createToken('lms')->accessToken;
         if ($token == null) {
             throw new HttpException(HttpStatus::INTERNAL_SERVER_ERROR, 'Token generate failed!');
         }
