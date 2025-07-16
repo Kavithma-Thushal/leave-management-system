@@ -25,28 +25,36 @@ export default function Login() {
     };
 
     return (
-        <div className="max-w-md mx-auto mt-10">
-            <h2 className="text-2xl font-bold mb-4">Login</h2>
-            {error && <p className="text-red-500 mb-2">{error}</p>}
-            <form onSubmit={handleSubmit} className="space-y-4">
-                <input
-                    name="email"
-                    placeholder="Email"
-                    type="email"
-                    onChange={handleChange}
-                    className="w-full border px-3 py-2 rounded"
-                />
-                <input
-                    name="password"
-                    type="password"
-                    placeholder="Password"
-                    onChange={handleChange}
-                    className="w-full border px-3 py-2 rounded"
-                />
-                <button type="submit" className="bg-green-500 text-white px-4 py-2 rounded w-full">
-                    Login
-                </button>
-            </form>
+        <div
+            className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-500 via-blue-600 to-blue-800 p-6">
+            <div
+                className="bg-white bg-opacity-20 backdrop-blur-md shadow-2xl rounded-2xl p-10 max-w-md w-full border border-white border-opacity-30">
+                <h2 className="text-3xl font-extrabold text-black mb-8 drop-shadow-lg text-center">Login</h2>
+                {error && (
+                    <p className="text-red-600 mb-4 font-semibold text-center">{error}</p>
+                )}
+                <form onSubmit={handleSubmit} className="space-y-6">
+                    <input
+                        name="email"
+                        placeholder="Email"
+                        type="email"
+                        onChange={handleChange}
+                        className="w-full bg-white bg-opacity-70 border border-gray-300 rounded px-4 py-3 text-black focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition"
+                        required
+                    />
+                    <input
+                        name="password"
+                        type="password"
+                        placeholder="Password"
+                        onChange={handleChange}
+                        className="w-full bg-white bg-opacity-70 border border-gray-300 rounded px-4 py-3 text-black focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition"
+                        required
+                    />
+                    <button type="submit"
+                            className="bg-green-500 text-white font-semibold px-6 py-3 rounded shadow hover:bg-green-600 transition duration-300 w-full">Login
+                    </button>
+                </form>
+            </div>
         </div>
     );
 }
