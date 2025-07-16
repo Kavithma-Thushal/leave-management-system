@@ -15,7 +15,7 @@ export default function Register() {
             await register(form);
             alert('Registered successfully!');
         } catch (err: any) {
-            setError(err.response?.data?.message || 'Registration failed.');
+            setError(err.response?.data?.message || 'Registration failed!');
         }
     };
 

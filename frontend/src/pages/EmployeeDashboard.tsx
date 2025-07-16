@@ -13,7 +13,7 @@ export default function EmployeeDashboard() {
 
     const handleApplyLeave = async () => {
         if (!accessToken) {
-            setError('Access token missing. Please login again.');
+            setError('Access token missing. Please login again!');
             return;
         }
 
@@ -36,14 +36,9 @@ export default function EmployeeDashboard() {
     return (
         <div className="text-center mt-10">
             <h1 className="text-3xl font-bold">Employee Dashboard</h1>
-
-            <button
-                onClick={handleApplyLeave}
-                className="mt-6 px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-            >
-                Apply for Leave
+            <button onClick={handleApplyLeave}
+                    className="mt-6 px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Apply for Leave
             </button>
-
             {message && <p className="mt-4 text-green-600">{message}</p>}
             {error && <p className="mt-4 text-red-600">{error}</p>}
         </div>

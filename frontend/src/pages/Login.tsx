@@ -16,7 +16,7 @@ export default function Login() {
         login(
             form,
             () => {
-                navigate('/employee-dashboard'); // ✅ Redirect after login
+                navigate('/employee-dashboard');
             },
             (errorMsg) => {
                 setError(errorMsg);
