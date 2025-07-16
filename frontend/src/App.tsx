@@ -1,7 +1,20 @@
-export default function App() {
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import Home from './pages/Home';
+import Register from './pages/Register';
+import Login from './pages/Login';
+import EmployeeDashboard from './pages/EmployeeDashboard';
+
+function App() {
     return (
-        <>
-            <h1 className="text-red-500">Hello World!</h1>
-        </>
-    )
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Home/>}/>
+                <Route path="/register" element={<Register/>}/>
+                <Route path="/login" element={<Login/>}/>
+                <Route path="/employee-dashboard" element={<EmployeeDashboard/>}/>
+            </Routes>
+        </BrowserRouter>
+    );
 }
+
+export default App;
