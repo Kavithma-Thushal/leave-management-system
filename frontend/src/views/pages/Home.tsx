@@ -2,18 +2,27 @@ import {Link} from 'react-router-dom';
 
 export default function Home() {
     return (
-        <div
-            className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-500 via-blue-600 to-blue-800">
-            <div
-                className="bg-white bg-opacity-20 backdrop-blur-md shadow-2xl rounded-2xl p-10 max-w-4xl w-full text-center border border-white border-opacity-30">
-                <h1 className="text-4xl font-extrabold text-black mb-6 drop-shadow-lg">
+        <div className="flex items-center justify-center min-h-screen bg-darkBlue text-neonBlue px-4">
+            <div className="text-center space-y-8 max-w-3xl w-full">
+                <h1 className="text-4xl sm:text-5xl font-extrabold drop-shadow">
                     Welcome to Leave Management System
                 </h1>
-                <div className="flex justify-center gap-6 mt-10">
-                    <Link to="/register"
-                          className="bg-blue-500 text-white font-semibold px-6 py-3 rounded shadow hover:bg-blue-600 transition duration-300">Register</Link>
-                    <Link to="/login"
-                          className="bg-green-500 text-white font-semibold px-6 py-3 rounded shadow hover:bg-green-600 transition duration-300">Login</Link>
+                <p className="text-lg text-gray-200">
+                    Manage your leaves efficiently with a simple and secure system.
+                </p>
+                <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6">
+                    <Link
+                        to="/register"
+                        className="bg-neonBlue text-darkBlue px-6 py-3 rounded-lg font-semibold shadow-lg hover:scale-105 transition duration-300"
+                    >
+                        Register
+                    </Link>
+                    <Link
+                        to="/login"
+                        className="bg-darkBlue text-neonBlue border border-neonBlue px-6 py-3 rounded-lg font-semibold shadow-lg hover:scale-105 transition duration-300"
+                    >
+                        Login
+                    </Link>
                 </div>
             </div>
         </div>
