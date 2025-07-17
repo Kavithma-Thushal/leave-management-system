@@ -14,19 +14,35 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         $data = [
+//            [
+//                'name' => 'Admin',
+//                'email' => 'admin@example.com',
+//                'role' => 'admin',
+//                'password' => Hash::make('password'),
+//                'created_at' => now(),
+//                'updated_at' => now(),
+//            ],
+//            [
+//                'name' => 'Employee',
+//                'email' => 'employee1@example.com',
+//                'role' => 'employee',
+//                'password' => Hash::make('password'),
+//                'created_at' => now(),
+//                'updated_at' => now(),
+//            ],
             [
-                'name' => 'Admin',
-                'email' => 'admin@example.com',
+                'name' => 'a',
+                'email' => 'a@gmail.com',
                 'role' => 'admin',
-                'password' => Hash::make('password'),
+                'password' => Hash::make('1234'),
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'name' => 'Employee',
-                'email' => 'employee1@example.com',
+                'name' => 'e',
+                'email' => 'e@gmail.com',
                 'role' => 'employee',
-                'password' => Hash::make('password'),
+                'password' => Hash::make('1234'),
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
