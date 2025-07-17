@@ -15,8 +15,12 @@ export default function Login() {
         e.preventDefault();
         login(
             form,
-            () => {
-                navigate('/employee-dashboard');
+            (user) => {
+                if (user.role === 'admin') {
+                    navigate('/admin-dashboard');
+                } else {
+                    navigate('/employee-dashboard');
+                }
             },
             (errorMsg) => {
                 setError(errorMsg);

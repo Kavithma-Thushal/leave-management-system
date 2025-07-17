@@ -4,10 +4,23 @@ namespace App\Http\Controllers;
 
 use App\Classes\ErrorResponse;
 use App\Http\Resources\SuccessResource;
+use App\Http\Resources\UserResource;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class EmployeeController extends Controller
 {
+
+    public function getRole()
+    {
+        try {
+            return new SuccessResource([
+                'message' => 'User role retrieved successfully!',
+                'data' => new userResource(auth()->user())
+            ]);
+        } catch (HttpException $e) {
+            ErrorResponse::throwException($e);
+        }
+    }
 
     public function applyForLeave()
     {
