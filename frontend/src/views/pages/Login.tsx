@@ -30,7 +30,7 @@ export default function Login() {
     return (
         <div className="min-h-screen flex items-center justify-center bg-[#000a1f] px-4">
             <div className="bg-white bg-opacity-10 backdrop-blur-lg shadow-lg rounded-3xl p-12 w-[600px] border border-neonBlue border-opacity-50">
-            <h2 className="text-4xl font-extrabold text-neonBlue drop-shadow-lg text-center mb-10 tracking-wide">
+            <h2 className="text-4xl font-bold text-neonBlue drop-shadow-lg text-center mb-10 tracking-wide">
                     LOGIN
                 </h2>
 

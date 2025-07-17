@@ -3,7 +3,6 @@ import {register} from '../../services/authService.ts';
 
 export default function Register() {
     const [form, setForm] = useState({name: '', email: '', password: ''});
-    const [error, setError] = useState<string | null>(null);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setForm({...form, [e.target.name]: e.target.value});
@@ -15,7 +14,7 @@ export default function Register() {
             await register(form);
             alert('Registered successfully!');
         } catch (err: any) {
-            setError(err.response?.data?.message || 'Registration failed!');
+            alert(err.response?.data?.message || 'Registration failed!');
         }
     };
 
@@ -23,13 +22,9 @@ export default function Register() {
         <div className="min-h-screen flex items-center justify-center bg-[#000a1f] px-4">
             <div
                 className="bg-white bg-opacity-10 backdrop-blur-lg shadow-lg rounded-3xl p-12 w-[600px] border border-neonBlue border-opacity-50">
-                <h2 className="text-4xl font-extrabold text-neonBlue drop-shadow-lg text-center mb-10 tracking-wide">
+                <h2 className="text-4xl font-bold text-neonBlue drop-shadow-lg text-center mb-10 tracking-wide">
                     REGISTER
                 </h2>
-
-                {error && (
-                    <p className="text-red-500 font-semibold text-center mb-4">{error}</p>
-                )}
 
                 <form onSubmit={handleSubmit} className="space-y-8">
                     <input
