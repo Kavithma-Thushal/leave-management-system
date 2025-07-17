@@ -27,23 +27,22 @@ export default function EmployeeDashboard() {
     };
 
     return (
-        <div
-            className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-500 via-blue-600 to-blue-800 p-6">
+        <div className="min-h-screen flex items-center justify-center bg-[#000a1f] px-4">
             <div
-                className="bg-white bg-opacity-20 backdrop-blur-md shadow-2xl rounded-2xl p-10 max-w-2xl w-full border border-white border-opacity-30">
-                <h1 className="text-3xl font-extrabold text-black mb-8 drop-shadow-lg text-center">
+                className="bg-white bg-opacity-10 backdrop-blur-lg shadow-lg rounded-3xl p-12 w-[600px] border border-neonBlue border-opacity-50">
+                <h1 className="text-3xl sm:text-4xl font-extrabold text-neonBlue drop-shadow text-center mb-8">
                     Employee Dashboard
                 </h1>
 
-                <h2 className="text-2xl font-semibold mb-6 text-black text-center drop-shadow">
+                <h2 className="text-2xl font-semibold text-neonBlue text-center drop-shadow mb-6">
                     Apply for Leave
                 </h2>
 
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-8">
                     <select
                         value={leaveType}
                         onChange={(e) => setLeaveType(e.target.value)}
-                        className="w-full bg-white bg-opacity-70 border border-gray-300 rounded px-4 py-3 text-black focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+                        className="w-full bg-[#00102f] text-neonBlue border border-neonBlue rounded-lg px-6 py-3 shadow-inner focus:outline-none focus:ring-4 focus:ring-neonBlue transition"
                     >
                         <option value="casual">Casual</option>
                         <option value="annual">Annual</option>
@@ -54,7 +53,7 @@ export default function EmployeeDashboard() {
                         type="date"
                         value={fromDate}
                         onChange={(e) => setFromDate(e.target.value)}
-                        className="w-full bg-white bg-opacity-70 border border-gray-300 rounded px-4 py-3 text-black focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+                        className="w-full bg-[#00102f] text-neonBlue border border-neonBlue rounded-lg px-6 py-3 shadow-inner focus:outline-none focus:ring-4 focus:ring-neonBlue transition"
                         required
                     />
 
@@ -62,13 +61,13 @@ export default function EmployeeDashboard() {
                         type="date"
                         value={toDate}
                         onChange={(e) => setToDate(e.target.value)}
-                        className="w-full bg-white bg-opacity-70 border border-gray-300 rounded px-4 py-3 text-black focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+                        className="w-full bg-[#00102f] text-neonBlue border border-neonBlue rounded-lg px-6 py-3 shadow-inner focus:outline-none focus:ring-4 focus:ring-neonBlue transition"
                         required
                     />
 
                     <button
                         type="submit"
-                        className="bg-blue-500 text-white font-semibold px-6 py-3 rounded shadow hover:bg-blue-600 transition duration-300 w-full"
+                        className="bg-neonBlue text-darkBlue px-6 py-3 rounded-lg font-semibold shadow-lg hover:scale-105 transition duration-300 w-full"
                     >
                         Submit Leave Request
                     </button>

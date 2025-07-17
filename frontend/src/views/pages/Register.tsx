@@ -20,20 +20,23 @@ export default function Register() {
     };
 
     return (
-        <div
-            className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-500 via-blue-600 to-blue-800 p-6">
+        <div className="min-h-screen flex items-center justify-center bg-[#000a1f] px-4">
             <div
-                className="bg-white bg-opacity-20 backdrop-blur-md shadow-2xl rounded-2xl p-10 max-w-md w-full border border-white border-opacity-30">
-                <h2 className="text-3xl font-extrabold text-black mb-8 drop-shadow-lg text-center">Register</h2>
+                className="bg-white bg-opacity-10 backdrop-blur-lg shadow-lg rounded-3xl p-12 w-[600px] border border-neonBlue border-opacity-50">
+                <h2 className="text-4xl font-extrabold text-neonBlue drop-shadow-lg text-center mb-10 tracking-wide">
+                    REGISTER
+                </h2>
+
                 {error && (
-                    <p className="text-red-600 mb-4 font-semibold text-center">{error}</p>
+                    <p className="text-red-500 font-semibold text-center mb-4">{error}</p>
                 )}
-                <form onSubmit={handleSubmit} className="space-y-6">
+
+                <form onSubmit={handleSubmit} className="space-y-8">
                     <input
                         name="name"
                         placeholder="Name"
                         onChange={handleChange}
-                        className="w-full bg-white bg-opacity-70 border border-gray-300 rounded px-4 py-3 text-black focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition"
+                        className="w-full bg-[#00102f] text-neonBlue border border-neonBlue rounded-lg px-6 py-3 shadow-inner focus:outline-none focus:ring-4 focus:ring-neonBlue focus:border-transparent transition"
                         required
                     />
                     <input
@@ -41,7 +44,7 @@ export default function Register() {
                         type="email"
                         placeholder="Email"
                         onChange={handleChange}
-                        className="w-full bg-white bg-opacity-70 border border-gray-300 rounded px-4 py-3 text-black focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition"
+                        className="w-full bg-[#00102f] text-neonBlue border border-neonBlue rounded-lg px-6 py-3 shadow-inner focus:outline-none focus:ring-4 focus:ring-neonBlue focus:border-transparent transition"
                         required
                     />
                     <input
@@ -49,11 +52,14 @@ export default function Register() {
                         type="password"
                         placeholder="Password"
                         onChange={handleChange}
-                        className="w-full bg-white bg-opacity-70 border border-gray-300 rounded px-4 py-3 text-black focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition"
+                        className="w-full bg-[#00102f] text-neonBlue border border-neonBlue rounded-lg px-6 py-3 shadow-inner focus:outline-none focus:ring-4 focus:ring-neonBlue focus:border-transparent transition"
                         required
                     />
-                    <button type="submit"
-                            className="bg-blue-500 text-white font-semibold px-6 py-3 rounded shadow hover:bg-blue-600 transition duration-300 w-full">Register
+                    <button
+                        type="submit"
+                        className="bg-neonBlue text-darkBlue px-3 py-3 rounded-lg font-semibold shadow-lg hover:scale-105 transition duration-300 w-full"
+                    >
+                        REGISTER
                     </button>
                 </form>
             </div>

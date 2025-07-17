@@ -6,7 +6,7 @@ export function Navbar() {
     return (
         <nav className="bg-darkBlue text-white p-2 fixed w-full z-50">
             <div className="w-full flex justify-between items-center px-4">
-                <a href="#" className="flex items-center" rel="noopener noreferrer">
+                <a href="/" className="flex items-center" rel="noopener noreferrer">
                     <img src={logo} className="Nav-logo mr-3 mt-2" alt="Nav-logo"/>
                     <div className="text-2xl font-bold">
                         LEAVE MANAGEMENT SYSTEM
