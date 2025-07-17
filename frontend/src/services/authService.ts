@@ -1,13 +1,15 @@
 import axios from 'axios';
 
-const api = axios.create({
-    baseURL: 'http://127.0.0.1:8000/api/v1',
-});
+const BASE_URL = 'http://127.0.0.1:8000/api/v1';
 
 // Register
-export const register = (
-    data: { name: string; email: string; password: string }) =>
-    api.post('/register', data);
+export const register = (data: { name: string; email: string; password: string }) => {
+    return axios.post(`${BASE_URL}/register`, data, {
+        headers: {
+            Accept: 'application/json',
+        },
+    });
+};
 
 // Login
 export const login = async (
@@ -17,15 +19,21 @@ export const login = async (
 ) => {
     try {
         // First, login and get token
-        const response = await api.post('/login', data);
+        const response = await axios.post(`${BASE_URL}/login`, data, {
+            headers: {
+                Accept: 'application/json',
+            },
+        });
+
         const access_token = response.data.data.access_token;
         localStorage.setItem('access_token', access_token);
 
-        // Then, fetch the full user with role
-        const userResponse = await api.get('/employee/get-role', {
+        // Then, fetch the user role
+        const userResponse = await axios.get(`${BASE_URL}/employee/get-role`, {
             headers: {
-                Authorization: `Bearer ${access_token}`
-            }
+                Authorization: `Bearer ${access_token}`,
+                Accept: 'application/json',
+            },
         });
 
         const user = userResponse.data.data;

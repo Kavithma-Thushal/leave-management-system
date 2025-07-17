@@ -53,7 +53,7 @@ export default function Register() {
                         required
                     />
                     <button type="submit"
-                            className="bg-white text-blue-700 font-semibold px-6 py-3 rounded shadow hover:bg-blue-100 transition duration-300 w-full">Register
+                            className="bg-blue-500 text-white font-semibold px-6 py-3 rounded shadow hover:bg-blue-600 transition duration-300 w-full">Register
                     </button>
                 </form>
             </div>

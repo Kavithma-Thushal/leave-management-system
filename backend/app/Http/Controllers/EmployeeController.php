@@ -3,31 +3,41 @@
 namespace App\Http\Controllers;
 
 use App\Classes\ErrorResponse;
+use App\Http\Requests\LeaveRequest;
 use App\Http\Resources\SuccessResource;
 use App\Http\Resources\UserResource;
+use App\Http\Services\EmployeeService;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class EmployeeController extends Controller
 {
+    protected EmployeeService $employeeService;
+
+    public function __construct(EmployeeService $employeeService)
+    {
+        $this->employeeService = $employeeService;
+    }
 
     public function getRole()
     {
         try {
+            $user = $this->employeeService->getRole();
             return new SuccessResource([
                 'message' => 'User role retrieved successfully!',
-                'data' => new userResource(auth()->user())
+                'data' => new UserResource($user)
             ]);
         } catch (HttpException $e) {
             ErrorResponse::throwException($e);
         }
     }
 
-    public function applyForLeave()
+    public function applyForLeave(LeaveRequest $request)
     {
         try {
+            $leave = $this->employeeService->applyForLeave($request->validated());
             return new SuccessResource([
-                'message' => 'Applied for leave successfully!',
-                'data' => null
+                'message' => 'Leave applied successfully!',
+                'data' => $leave
             ]);
         } catch (HttpException $e) {
             ErrorResponse::throwException($e);

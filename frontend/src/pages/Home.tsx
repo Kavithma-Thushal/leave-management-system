@@ -11,9 +11,9 @@ export default function Home() {
                 </h1>
                 <div className="flex justify-center gap-6 mt-10">
                     <Link to="/register"
-                          className="bg-white text-blue-700 font-semibold px-6 py-2 rounded shadow hover:bg-blue-100 transition duration-300">Register</Link>
+                          className="bg-blue-500 text-white font-semibold px-6 py-3 rounded shadow hover:bg-blue-600 transition duration-300">Register</Link>
                     <Link to="/login"
-                          className="bg-white text-green-700 font-semibold px-6 py-2 rounded shadow hover:bg-green-100 transition duration-300">Login</Link>
+                          className="bg-green-500 text-white font-semibold px-6 py-3 rounded shadow hover:bg-green-600 transition duration-300">Login</Link>
                 </div>
             </div>
         </div>

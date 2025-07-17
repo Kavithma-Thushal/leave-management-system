@@ -12,7 +12,7 @@ Route::prefix('v1')->group(function () {
 
         Route::prefix('employee')->group(function () {
             Route::get('get-role', [EmployeeController::class, 'getRole']);
-            Route::get('apply-for-leave', [EmployeeController::class, 'applyForLeave']);
+            Route::post('apply-for-leave', [EmployeeController::class, 'applyForLeave']);
             Route::get('view-leave-status', [EmployeeController::class, 'viewLeaveStatus']);
         });
 
