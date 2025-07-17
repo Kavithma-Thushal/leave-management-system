@@ -1,9 +1,9 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import Home from './pages/Home';
-import Register from './pages/Register';
-import Login from './pages/Login';
-import AdminDashboard from './pages/AdminDashboard';
-import EmployeeDashboard from './pages/EmployeeDashboard';
+import Home from './views/pages/Home';
+import Register from './views/pages/Register';
+import Login from './views/pages/Login';
+import AdminDashboard from './views/pages/AdminDashboard';
+import EmployeeDashboard from './views/pages/EmployeeDashboard';
 
 export default function App() {
     return (

@@ -1,11 +1,9 @@
 import {useState} from 'react';
-import {login} from '../services/authService';
-import {useNavigate} from 'react-router-dom';
+import {register} from '../../services/authService.ts';
 
-export default function Login() {
-    const [form, setForm] = useState({email: '', password: ''});
+export default function Register() {
+    const [form, setForm] = useState({name: '', email: '', password: ''});
     const [error, setError] = useState<string | null>(null);
-    const navigate = useNavigate();
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setForm({...form, [e.target.name]: e.target.value});
@@ -13,19 +11,12 @@ export default function Login() {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        login(
-            form,
-            (user) => {
-                if (user.role === 'admin') {
-                    navigate('/admin-dashboard');
-                } else {
-                    navigate('/employee-dashboard');
-                }
-            },
-            (errorMsg) => {
-                setError(errorMsg);
-            }
-        );
+        try {
+            await register(form);
+            alert('Registered successfully!');
+        } catch (err: any) {
+            setError(err.response?.data?.message || 'Registration failed!');
+        }
     };
 
     return (
@@ -33,15 +24,22 @@ export default function Login() {
             className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-500 via-blue-600 to-blue-800 p-6">
             <div
                 className="bg-white bg-opacity-20 backdrop-blur-md shadow-2xl rounded-2xl p-10 max-w-md w-full border border-white border-opacity-30">
-                <h2 className="text-3xl font-extrabold text-black mb-8 drop-shadow-lg text-center">Login</h2>
+                <h2 className="text-3xl font-extrabold text-black mb-8 drop-shadow-lg text-center">Register</h2>
                 {error && (
                     <p className="text-red-600 mb-4 font-semibold text-center">{error}</p>
                 )}
                 <form onSubmit={handleSubmit} className="space-y-6">
                     <input
+                        name="name"
+                        placeholder="Name"
+                        onChange={handleChange}
+                        className="w-full bg-white bg-opacity-70 border border-gray-300 rounded px-4 py-3 text-black focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition"
+                        required
+                    />
+                    <input
                         name="email"
-                        placeholder="Email"
                         type="email"
+                        placeholder="Email"
                         onChange={handleChange}
                         className="w-full bg-white bg-opacity-70 border border-gray-300 rounded px-4 py-3 text-black focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition"
                         required
@@ -55,7 +53,7 @@ export default function Login() {
                         required
                     />
                     <button type="submit"
-                            className="bg-green-500 text-white font-semibold px-6 py-3 rounded shadow hover:bg-green-600 transition duration-300 w-full">Login
+                            className="bg-blue-500 text-white font-semibold px-6 py-3 rounded shadow hover:bg-blue-600 transition duration-300 w-full">Register
                     </button>
                 </form>
             </div>

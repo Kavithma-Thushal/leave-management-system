@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {applyForLeave} from "../services/employeeService";
+import {applyForLeave} from "../../services/employeeService.ts";
 
 export default function EmployeeDashboard() {
     const [leaveType, setLeaveType] = useState("casual");
