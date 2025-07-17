@@ -6,14 +6,17 @@ export default {
             backgroundColor: {
                 'darkBlue': '#000a1f',
                 'neonBlue': '#00c7ff',
+                'neonRed': '#f1123e',
             },
             textColor: {
                 'darkBlue': '#000a1f',
                 'neonBlue': '#00c7ff',
+                'neonRed': '#ff006a',
             },
             borderColor: {
                 'darkBlue': '#000a1f',
                 'neonBlue': '#00c7ff',
+                'neonRed': '#ff006a',
             },
         },
     },

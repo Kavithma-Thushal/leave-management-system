@@ -69,7 +69,7 @@ export default function EmployeeDashboard() {
                         type="submit"
                         className="bg-neonBlue text-darkBlue px-6 py-3 rounded-lg font-semibold shadow-lg hover:scale-105 transition duration-300 w-full"
                     >
-                        Submit Leave Request
+                        Submit
                     </button>
                 </form>
             </div>

@@ -12,7 +12,7 @@ export default function Home() {
                 </p>
                 <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6">
                     <Link to="/login"
-                          className="bg-darkBlue text-neonBlue border border-neonBlue px-6 py-3 rounded-lg font-semibold shadow-lg hover:scale-105 transition duration-300">LET'S GO</Link>
+                          className="bg-darkBlue text-neonBlue border border-neonBlue px-6 py-3 rounded-lg font-semibold shadow-lg hover:scale-105 transition duration-300">Let's go</Link>
                 </div>
             </div>
         </div>
