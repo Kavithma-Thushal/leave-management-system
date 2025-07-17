@@ -36,7 +36,7 @@ class EmployeeController extends Controller
         try {
             $leave = $this->employeeService->applyForLeave($request->validated());
             return new SuccessResource([
-                'message' => 'Leave applied successfully!',
+                'message' => 'LeaveLogs applied successfully!',
                 'data' => $leave
             ]);
         } catch (HttpException $e) {

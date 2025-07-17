@@ -25,7 +25,7 @@ class AuthController extends Controller
         try {
             $data = $this->authService->register($request->validated());
             return new SuccessResource([
-                'message' => 'User registered successfully!',
+                'message' => 'Employee registered successfully!',
                 'data' => new UserResource($data)]);
         } catch (HttpException $e) {
             ErrorResponse::throwException($e);

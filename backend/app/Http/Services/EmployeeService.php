@@ -2,18 +2,21 @@
 
 namespace App\Http\Services;
 
-use App\Models\Leave;
+use App\Models\LeaveLogs;
 use App\Repositories\Employee\EmployeeRepositoryInterface;
+use App\Repositories\LeaveLogs\LeaveLogsRepositoryInterface;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class EmployeeService
 {
     protected EmployeeRepositoryInterface $employeeRepositoryInterface;
+    protected LeaveLogsRepositoryInterface $leaveLogRepositoryInterface;
 
-    public function __construct(EmployeeRepositoryInterface $employeeRepositoryInterface)
+    public function __construct(EmployeeRepositoryInterface $employeeRepositoryInterface, LeaveLogsRepositoryInterface $leaveLogRepositoryInterface)
     {
         $this->employeeRepositoryInterface = $employeeRepositoryInterface;
+        $this->leaveLogRepositoryInterface = $leaveLogRepositoryInterface;
     }
 
     public function getRole()
@@ -31,12 +34,12 @@ class EmployeeService
         try {
             $user = auth()->user();
 
-            $leave = Leave::create([
+            $leave = $this->leaveLogRepositoryInterface->create([
                 'user_id' => $user->id,
                 'leave_type' => $data['leave_type'],
                 'from_date' => $data['from_date'],
                 'to_date' => $data['to_date'],
-                'status' => 'pending'
+                'status' => 'pending',
             ]);
 
             DB::commit();

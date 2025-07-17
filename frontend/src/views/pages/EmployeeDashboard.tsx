@@ -44,9 +44,8 @@ export default function EmployeeDashboard() {
                         onChange={(e) => setLeaveType(e.target.value)}
                         className="w-full bg-[#00102f] text-neonBlue border border-neonBlue rounded-lg px-6 py-3 shadow-inner focus:outline-none focus:ring-4 focus:ring-neonBlue transition"
                     >
-                        <option value="casual">Casual</option>
                         <option value="annual">Annual</option>
-                        <option value="sick">Sick</option>
+                        <option value="casual">Casual</option>
                     </select>
 
                     <input

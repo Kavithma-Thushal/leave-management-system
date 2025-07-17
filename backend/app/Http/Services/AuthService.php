@@ -3,6 +3,7 @@
 namespace App\Http\Services;
 
 use App\Enums\HttpStatus;
+use App\Repositories\LeaveDetails\LeaveDetailsRepositoryInterface;
 use App\Repositories\User\UserRepositoryInterface;
 use Exception;
 use Illuminate\Support\Facades\DB;
@@ -12,10 +13,12 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 class AuthService
 {
     protected UserRepositoryInterface $userRepositoryInterface;
+    protected LeaveDetailsRepositoryInterface $leaveDetailsRepositoryInterface;
 
-    public function __construct(UserRepositoryInterface $userRepositoryInterface)
+    public function __construct(UserRepositoryInterface $userRepositoryInterface, LeaveDetailsRepositoryInterface $leaveDetailsRepositoryInterface)
     {
         $this->userRepositoryInterface = $userRepositoryInterface;
+        $this->leaveDetailsRepositoryInterface = $leaveDetailsRepositoryInterface;
     }
 
     public function register(array $data)
@@ -23,8 +26,15 @@ class AuthService
         DB::beginTransaction();
         try {
             $user = $this->userRepositoryInterface->create($data);
+            $this->leaveDetailsRepositoryInterface->create([
+                'user_id' => $user->id,
+                'annual' => 20,
+                'casual' => 10,
+            ]);
+
             DB::commit();
             return $user;
+
         } catch (Exception $e) {
             DB::rollBack();
             throw $e;
