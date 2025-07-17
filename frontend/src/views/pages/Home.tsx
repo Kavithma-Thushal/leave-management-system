@@ -11,18 +11,10 @@ export default function Home() {
                     Manage your leaves efficiently with a simple and secure system.
                 </p>
                 <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6">
-                    <Link
-                        to="/register"
-                        className="bg-neonBlue text-darkBlue px-6 py-3 rounded-lg font-semibold shadow-lg hover:scale-105 transition duration-300"
-                    >
-                        Register
-                    </Link>
-                    <Link
-                        to="/login"
-                        className="bg-darkBlue text-neonBlue border border-neonBlue px-6 py-3 rounded-lg font-semibold shadow-lg hover:scale-105 transition duration-300"
-                    >
-                        Login
-                    </Link>
+                    <Link to="/register"
+                          className="bg-darkBlue text-neonBlue border border-neonBlue px-6 py-3 rounded-lg font-semibold shadow-lg hover:scale-105 transition duration-300">REGISTER</Link>
+                    <Link to="/login"
+                          className="bg-neonBlue text-darkBlue px-6 py-3 rounded-lg font-semibold shadow-lg hover:scale-105 transition duration-300">LOGIN</Link>
                 </div>
             </div>
         </div>
