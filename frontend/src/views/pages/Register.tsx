@@ -6,7 +6,7 @@ export default function Register() {
     return (
         <div className="min-h-screen flex items-center justify-center bg-darkBlue px-4">
             <div
-                className="bg-white bg-opacity-10 backdrop-blur-lg shadow-lg rounded-3xl p-12 w-[600px] border border-neonBlue border-opacity-50">
+                className="bg-white bg-opacity-10 backdrop-blur-lg shadow-lg rounded-2xl p-12 w-[600px] border border-neonBlue border-opacity-50">
                 <h2 className="text-4xl font-bold text-neonBlue drop-shadow-lg text-center mb-10 tracking-wide">REGISTER</h2>
                 <form onSubmit={register} className="space-y-8">
                     <input

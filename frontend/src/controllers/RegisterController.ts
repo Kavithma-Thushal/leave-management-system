@@ -5,11 +5,7 @@ import {successNotification, errorNotification} from '../util/Alert';
 const BASE_URL = 'http://127.0.0.1:8000/api/v1';
 
 export default function registerController() {
-    const [form, setForm] = useState({
-        name: '',
-        email: '',
-        password: '',
-    });
+    const [form, setForm] = useState({name: '', email: '', password: ''});
 
     const handleChange = (e: any) => {
         setForm({...form, [e.target.name]: e.target.value});
