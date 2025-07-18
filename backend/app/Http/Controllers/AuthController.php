@@ -37,7 +37,7 @@ class AuthController extends Controller
         try {
             $data = $this->authService->login($request->validated());
             return new SuccessResource([
-                'message' => 'User logged in successfully!',
+                'message' => 'Employee logged in successfully!',
                 'data' => new LoginResource($data)]);
         } catch (HttpException $e) {
             ErrorResponse::throwException($e);

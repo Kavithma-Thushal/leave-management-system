@@ -1,11 +1,11 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import {Navbar} from "./views/components/Navbar/Navbar.tsx";
+import {Footer} from "./views/components/Footer/Footer.tsx";
 import Home from './views/pages/Home';
 import Register from './views/pages/Register';
 import Login from './views/pages/Login';
 import AdminDashboard from './views/pages/AdminDashboard';
 import EmployeeDashboard from './views/pages/EmployeeDashboard';
-import {Navbar} from "./views/components/Navbar/Navbar.tsx";
-import {Footer} from "./views/components/Footer/Footer.tsx";
 
 export default function App() {
     return (
