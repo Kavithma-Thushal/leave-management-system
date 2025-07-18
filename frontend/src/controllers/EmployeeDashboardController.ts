@@ -33,5 +33,6 @@ export default function employeeDashboardController() {
 
     return {
         user,
+        userDetails
     };
 }
