@@ -15,13 +15,24 @@ export default function employeeDashboardController() {
 
     const userDetails = async () => {
         try {
+
             const token = localStorage.getItem('access_token');
             const response = await axios.get(`${BASE_URL}/employee/get-details`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
             });
-            setUser(response.data.data);
+
+            const userData = response.data.data;
+            if (userData.role !== 'employee') {
+                errorNotification('Only employees can access this page!');
+                localStorage.removeItem('access_token');
+                navigate('/');
+                return;
+            }
+
+            setUser(userData);
+
         } catch (error: any) {
             errorNotification('Failed to load user details. Please try again!');
             if (error.response?.status === 401) {

@@ -15,7 +15,7 @@ export default function AdminDashboard() {
             {employees.length > 0 ? (
                 <div className="max-w-7xl mx-auto overflow-x-auto">
                     <table
-                        className="w-full text-left border border-neonBlue text-neonBlue text-sm sm:text-base rounded-lg overflow-hidden">
+                        className="w-full text-left border border-neonBlue text-neonBlue text-sm sm:text-base">
                         <thead>
                         <tr className="bg-neonBlue text-darkBlue">
                             <th className="px-4 py-3">Name</th>
@@ -23,7 +23,7 @@ export default function AdminDashboard() {
                             <th className="px-4 py-3">Joined</th>
                             <th className="px-4 py-3">Annual</th>
                             <th className="px-4 py-3">Casual</th>
-                            <th className="px-4 py-3">Leave Logs</th>
+                            <th className="px-4 py-3 text-center">Leave Logs</th>
                         </tr>
                         </thead>
                         <tbody>
