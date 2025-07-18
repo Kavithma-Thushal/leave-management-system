@@ -101,7 +101,7 @@ export default function EmployeeDashboard() {
                     </div>
                 </div>
             ) : (
-                <h1 className="text-center mt-72 text-neonBlue text-lg animate-pulse">Loading...</h1>
+                <h1 className="text-center mt-72 text-neonBlue text-4xl animate-pulse">Loading .....</h1>
             )}
 
             {showPopup && <ApplyForLeave onClose={() => {

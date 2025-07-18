@@ -5,25 +5,29 @@ import {errorNotification} from '../util/Alert';
 
 const BASE_URL = 'http://127.0.0.1:8000/api/v1';
 
-export default function employeeDashboardController() {
-    const [user, setUser] = useState<any>(null);
+export default function adminDashboardController() {
+    const [employees, setEmployees] = useState<any[]>([]);
     const navigate = useNavigate();
 
     useEffect(() => {
-        userDetails();
+        getAllEmployees();
     }, []);
 
-    const userDetails = async () => {
+    const getAllEmployees = async () => {
         try {
             const token = localStorage.getItem('access_token');
-            const response = await axios.get(`${BASE_URL}/employee/get-details`, {
+            const response = await axios.get(`${BASE_URL}/admin/view-all-leave-status`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
             });
-            setUser(response.data.data);
+
+            // Convert the returned object to array for easy mapping
+            const dataObj = response.data.data;
+            const employeesArray = Object.values(dataObj);
+            setEmployees(employeesArray);
         } catch (error: any) {
-            errorNotification('Failed to load user details. Please try again!');
+            errorNotification('Failed to load employees. Please try again!');
             if (error.response?.status === 401) {
                 localStorage.removeItem('access_token');
                 navigate('/');
@@ -32,7 +36,7 @@ export default function employeeDashboardController() {
     };
 
     return {
-        user,
-        userDetails
+        employees,
+        getAllEmployees,
     };
 }
