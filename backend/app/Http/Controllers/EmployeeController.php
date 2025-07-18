@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Classes\ErrorResponse;
 use App\Http\Requests\LeaveRequest;
 use App\Http\Resources\SuccessResource;
-use App\Http\Resources\UserResource;
 use App\Http\Services\EmployeeService;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 

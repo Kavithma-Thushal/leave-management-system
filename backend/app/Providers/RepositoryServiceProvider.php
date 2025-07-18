@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Repositories\Admin\AdminRepository;
+use App\Repositories\Admin\AdminRepositoryInterface;
 use App\Repositories\Employee\EmployeeRepository;
 use App\Repositories\Employee\EmployeeRepositoryInterface;
 use App\Repositories\LeaveDetails\LeaveDetailsRepository;
@@ -20,6 +22,7 @@ class RepositoryServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
+        $this->app->bind(AdminRepositoryInterface::class, AdminRepository::class);
         $this->app->bind(EmployeeRepositoryInterface::class, EmployeeRepository::class);
         $this->app->bind(LeaveDetailsRepositoryInterface::class, LeaveDetailsRepository::class);
         $this->app->bind(LeaveLogsRepositoryInterface::class, LeaveLogsRepository::class);
