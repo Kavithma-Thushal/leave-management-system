@@ -11,12 +11,12 @@ export default {
             textColor: {
                 'darkBlue': '#000a1f',
                 'neonBlue': '#00c7ff',
-                'neonRed': '#ff006a',
+                'neonRed': '#f1123e',
             },
             borderColor: {
                 'darkBlue': '#000a1f',
                 'neonBlue': '#00c7ff',
-                'neonRed': '#ff006a',
+                'neonRed': '#f1123e',
             },
         },
     },
