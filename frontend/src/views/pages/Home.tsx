@@ -1,6 +1,9 @@
 import {Link} from 'react-router-dom';
+import homeController from '../../controllers/HomeController';
 
 export default function Home() {
+    homeController(); // Automatically redirect if access_token is found
+
     return (
         <div className="flex items-center justify-center min-h-screen bg-darkBlue text-neonBlue">
             <div className="text-center space-y-8 max-w-3xl w-full">

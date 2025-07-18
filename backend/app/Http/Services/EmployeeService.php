@@ -78,7 +78,7 @@ class EmployeeService
                 'from_date' => $data['from_date'],
                 'to_date' => $data['to_date'],
                 'count' => $daysRequested,
-                'status' => 'pending',
+                'status' => 'Pending',
             ]);
 
             DB::commit();
