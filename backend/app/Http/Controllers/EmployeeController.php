@@ -24,7 +24,7 @@ class EmployeeController extends Controller
             $user = $this->employeeService->getRole();
             return new SuccessResource([
                 'message' => 'User role retrieved successfully!',
-                'data' => new UserResource($user)
+                'data' => $user->role
             ]);
         } catch (HttpException $e) {
             ErrorResponse::throwException($e);

@@ -28,9 +28,9 @@ export default function loginController() {
                 },
             });
 
-            const user = userResponse.data.data;
+            const role = userResponse.data.data;
 
-            if (user.role === 'admin') {
+            if (role === 'admin') {
                 navigate('/admin-dashboard');
             } else {
                 navigate('/employee-dashboard');
