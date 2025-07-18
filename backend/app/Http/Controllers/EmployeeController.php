@@ -60,9 +60,10 @@ class EmployeeController extends Controller
     public function viewLeaveStatus()
     {
         try {
+            $leaves = $this->employeeService->viewLeaveStatus();
             return new SuccessResource([
                 'message' => 'Viewed leave status successfully!',
-                'data' => null
+                'data' => $leaves
             ]);
         } catch (HttpException $e) {
             ErrorResponse::throwException($e);

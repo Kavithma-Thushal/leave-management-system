@@ -51,4 +51,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(LeaveDetails::class, 'user_id');
     }
+
+    public function leaveLogs()
+    {
+        return $this->hasMany(LeaveLogs::class, 'user_id');
+    }
 }

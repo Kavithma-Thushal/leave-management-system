@@ -19,12 +19,12 @@ class LeaveRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
-    public function rules()
+    public function rules(): array
     {
         return [
-            'leave_type' => 'required|string|in:casual,annual,sick',
-            'from_date' => 'required|date|after_or_equal:today',
-            'to_date' => 'required|date|after_or_equal:from_date',
+            'leave_type' => ['required', 'in:annual,casual'],
+            'from_date' => ['required', 'date', 'after_or_equal:today'],
+            'to_date' => ['required', 'date', 'after_or_equal:from_date'],
         ];
     }
 }

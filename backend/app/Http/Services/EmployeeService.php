@@ -71,10 +71,6 @@ class EmployeeService
                 throw new \Exception("Insufficient {$leaveType} leave balance. Requested: {$daysRequested}, Available: {$currentBalance}");
             }
 
-            // Reduce leave balance
-            $leaveDetails->$leaveType = $currentBalance - $daysRequested;
-            $leaveDetails->save();
-
             // Create record in leave log table
             $leave = $this->leaveLogRepositoryInterface->create([
                 'user_id' => $user->id,
@@ -89,6 +85,16 @@ class EmployeeService
             return $leave;
         } catch (HttpException $e) {
             DB::rollBack();
+            throw $e;
+        }
+    }
+
+    public function viewLeaveStatus()
+    {
+        try {
+            $user = auth()->user();
+            return $user->leaveLogs()->orderByDesc('created_at')->get();
+        } catch (HttpException $e) {
             throw $e;
         }
     }
