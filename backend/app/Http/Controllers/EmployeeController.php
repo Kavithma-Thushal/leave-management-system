@@ -31,6 +31,19 @@ class EmployeeController extends Controller
         }
     }
 
+    public function getDetails()
+    {
+        try {
+            $userDetails = $this->employeeService->getDetails();
+            return new SuccessResource([
+                'message' => 'User details retrieved successfully!',
+                'data' => $userDetails
+            ]);
+        } catch (HttpException $e) {
+            ErrorResponse::throwException($e);
+        }
+    }
+
     public function applyForLeave(LeaveRequest $request)
     {
         try {

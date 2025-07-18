@@ -28,6 +28,17 @@ class EmployeeService
         }
     }
 
+    public function getDetails()
+    {
+        try {
+            $user = auth()->user();
+            $user->load('leaveDetails');
+            return $user;
+        } catch (HttpException $e) {
+            throw $e;
+        }
+    }
+
     public function applyForLeave(array $data)
     {
         DB::beginTransaction();
