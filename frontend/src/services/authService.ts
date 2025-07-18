@@ -2,15 +2,6 @@ import axios from 'axios';
 
 const BASE_URL = 'http://127.0.0.1:8000/api/v1';
 
-// Register
-export const register = (data: { name: string; email: string; password: string }) => {
-    return axios.post(`${BASE_URL}/register`, data, {
-        headers: {
-            Accept: 'application/json',
-        },
-    });
-};
-
 // Login
 export const login = async (
     data: { email: string; password: string },
