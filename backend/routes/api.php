@@ -20,6 +20,7 @@ Route::prefix('v1')->group(function () {
 
         Route::prefix('admin')->group(function () {
             Route::get('view-all-leave-status', [AdminController::class, 'viewAllLeaveStatus']);
+            Route::post('change-leave-status', [AdminController::class, 'changeLeaveStatus']);
         });
 
     });
