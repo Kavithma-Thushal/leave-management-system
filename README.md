@@ -47,6 +47,52 @@ experience for both **Employees** and **Admins** through intuitive web interface
 ✅ Employee Dashboard: Leave application form, Leave status list<br/>
 ✅ Admin Dashboard: Leave approval list, Approve/Reject buttons, Users overview<br/>
 
+## ▶️ How to Run the Project
+
+### ⚛️ Frontend (React)
+1. Install dependencies - `npm install`
+2. Start the development server - `npm run dev`
+
+### 📦 Backend (Laravel)
+1. Install dependencies - `composer install`
+2. Prepare the database - `php artisan migrate`
+3. Create Passport personal access client - `php artisan passport:client --personal`
+4. Seed the database - `php artisan db:seed`
+5. Start the Laravel server - `php artisan serve`
+
+## 🔄 Seeding Information
+
+### 👨‍💼 Admin
+✅ Email: admin@example.com<br/>
+✅ Password: password<br/>
+
+### 👨‍💻 Employee
+✅ Email: employee1@example.com<br/>
+✅ Password: password<br/>
+
+## 📸 Screenshots
+
+### Home
+
+<img src="ss/Home.png">
+
+### Register
+
+<img src="ss/Register.png">
+
+### Login
+
+<img src="ss/Login.png">
+
+### Employee Dashboard
+
+<img src="ss/Employee-Dashboard.png">
+
+### Admin Dashboard
+
+<img src="ss/Admin-Dashboard.png">
+<img src="ss/Admin-Dashboard-2.png">
+
 ## 📬 Get in Touch
 
 For any queries, issues, or support, feel free to reach out!
