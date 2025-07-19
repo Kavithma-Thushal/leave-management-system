@@ -24,7 +24,7 @@ export default function AdminDashboard() {
 
     return (
         <div className="min-h-screen bg-darkBlue px-4 py-8 text-neonBlue">
-            <h1 className="text-4xl font-bold mb-12 text-center drop-shadow">Admin Dashboard</h1>
+            <h1 className="text-4xl font-bold mb-10 text-center drop-shadow mt-12">Admin Dashboard</h1>
 
             {employees.length > 0 ? (
                 <div className="max-w-7xl mx-auto overflow-x-auto">

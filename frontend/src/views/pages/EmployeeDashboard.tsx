@@ -11,10 +11,10 @@ export default function EmployeeDashboard() {
 
     return (
         <div className="min-h-screen bg-darkBlue px-4 py-8 text-neonBlue">
-            <h1 className="text-4xl font-bold mb-12 text-center drop-shadow">Employee Dashboard</h1>
+            <h1 className="text-4xl font-bold mb-10 text-center drop-shadow mt-12">Employee Dashboard</h1>
 
             {user ? (
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 max-w-7xl mx-auto items-start">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 max-w-7xl mx-auto items-start mb-12">
                     {/* Left Side - Employee Details */}
                     <div
                         className="bg-white bg-opacity-10 backdrop-blur-lg p-10 rounded-2xl shadow-2xl border border-neonBlue space-y-8">
