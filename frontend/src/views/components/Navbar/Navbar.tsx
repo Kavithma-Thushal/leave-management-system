@@ -4,9 +4,7 @@ import logo from "../../../assets/logo.png";
 import "./Navbar.css";
 
 export function Navbar() {
-    const [isLoggedIn, setIsLoggedIn] = useState(() => {
-        return !!localStorage.getItem("access_token");
-    });
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const location = useLocation();
     const navigate = useNavigate();
 

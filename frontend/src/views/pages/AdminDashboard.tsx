@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react';
 import adminDashboardController from '../../controllers/AdminDashboardController';
 import changeLeaveStatusController from '../../controllers/ChangeLeaveStatusController';
+import Chart from '../components/Chart/Chart';
 
 export default function AdminDashboard() {
     const {employees, getAllEmployees} = adminDashboardController();
@@ -120,6 +121,9 @@ export default function AdminDashboard() {
             ) : (
                 <h1 className="text-center mt-72 text-neonBlue text-4xl animate-pulse">Loading .....</h1>
             )}
+
+            <Chart employees={employees}/>
+
         </div>
     );
 }
