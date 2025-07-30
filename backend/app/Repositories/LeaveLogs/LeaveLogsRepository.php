@@ -18,4 +18,9 @@ class LeaveLogsRepository extends CrudRepository implements LeaveLogsRepositoryI
         $leaveLog->status = $status;
         $leaveLog->save();
     }
+
+    public function findByIdOrFail(int $id): LeaveLogs
+    {
+        return $this->model->findOrFail($id);
+    }
 }
