@@ -60,10 +60,10 @@ export default function Chart({employees}: ChartProps) {
                     <path key={i} d={path.d} fill={path.color} stroke="white" strokeWidth="0.005"/>
                 ))}
             </svg>
-            <div className="mt-6 flex flex-col space-y-2">
+            <div className="mt-6 flex flex-row flex-wrap gap-6 justify-center">
                 {paths.map((p, i) => (
-                    <div key={i} className="flex items-center space-x-2">
-                        <span className="w-4 h-4 inline-block rounded" style={{backgroundColor: p.color}}></span>
+                    <div key={i} className="flex items-center space-x-1">
+                        <span className="w-4 h-4 inline-block rounded" style={{ backgroundColor: p.color }}></span>
                         <span>{p.name}</span>
                     </div>
                 ))}

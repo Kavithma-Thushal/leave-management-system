@@ -63,12 +63,12 @@ experience for both **Employees** and **Admins** through intuitive web interface
 ## 🔄 Seeding Information
 
 ### 👨‍💼 Admin
-✅ Email: admin@example.com<br/>
-✅ Password: password<br/>
+✅ Email: `admin@example.com`<br/>
+✅ Password: `password`<br/>
 
 ### 👨‍💻 Employee
-✅ Email: employee1@example.com<br/>
-✅ Password: password<br/>
+✅ Email: `employee1@example.com`<br/>
+✅ Password: `password`<br/>
 
 ## 📸 Screenshots
 
@@ -92,6 +92,14 @@ experience for both **Employees** and **Admins** through intuitive web interface
 
 <img src="ss/Admin-Dashboard.png">
 <img src="ss/Admin-Dashboard-2.png">
+
+### Codes
+
+<img src="ss/Codes.png">
+
+### Schema
+
+<img src="ss/Schema.png">
 
 ## 📬 Get in Touch
 
