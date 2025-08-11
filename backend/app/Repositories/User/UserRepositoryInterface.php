@@ -7,4 +7,6 @@ use App\Repositories\CrudRepositoryInterface;
 interface UserRepositoryInterface extends CrudRepositoryInterface
 {
     public function findByEmail(string $email);
+
+    public function getAllWith(array $relations = []);
 }

@@ -34,7 +34,6 @@ class AuthService
 
             DB::commit();
             return $user;
-
         } catch (Exception $e) {
             DB::rollBack();
             throw $e;
@@ -43,25 +42,32 @@ class AuthService
 
     public function login(array $data)
     {
-        // Check Email
-        $user = $this->userRepositoryInterface->findByEmail($data['email']);
-        if (!$user) {
-            throw new HttpException(HttpStatus::UNPROCESSABLE_CONTENT, 'Email invalid!');
+        DB::beginTransaction();
+        try {
+
+            // Check Email
+            $user = $this->userRepositoryInterface->findByEmail($data['email']);
+            if (!$user) {
+                throw new HttpException(HttpStatus::UNPROCESSABLE_CONTENT, 'Email invalid. Try again!');
+            }
+
+            // Check Password
+            $password = Hash::check($data['password'], $user->password);
+            if (!$password) {
+                throw new HttpException(HttpStatus::UNPROCESSABLE_CONTENT, 'Password invalid. Try again!');
+            }
+
+            // Create Token
+            $token = $user->createToken('lms')->accessToken;
+            if ($token == null) {
+                throw new HttpException(HttpStatus::INTERNAL_SERVER_ERROR, 'Token generate failed. Try again!');
+            }
+
+            DB::commit();
+            return ['user_data' => $user, 'access_token' => $token];
+        } catch (Exception $e) {
+            DB::rollBack();
+            throw $e;
         }
-
-        // Check Password
-        $password = Hash::check($data['password'], $user->password);
-        if (!$password) {
-            throw new HttpException(HttpStatus::UNPROCESSABLE_CONTENT, 'Password invalid!');
-        }
-
-        // Create Token
-        $token = $user->createToken('lms')->accessToken;
-        if ($token == null) {
-            throw new HttpException(HttpStatus::INTERNAL_SERVER_ERROR, 'Token generate failed!');
-        }
-
-        return ['user' => $user, 'access_token' => $token];
-
     }
 }

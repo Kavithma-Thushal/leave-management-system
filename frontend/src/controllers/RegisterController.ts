@@ -1,13 +1,12 @@
+import {BASE_URL} from '../config/api.ts';
 import axios from 'axios';
 import {useState} from 'react';
-import { useNavigate } from 'react-router-dom';
-import {successNotification, errorNotification} from '../util/Alert';
-
-const BASE_URL = 'http://127.0.0.1:8000/api/v1';
+import {useNavigate} from 'react-router-dom';
+import {successNotification, errorNotification} from '../util/alert.ts';
 
 export default function registerController() {
-    const [form, setForm] = useState({name: '', email: '', password: ''});
     const navigate = useNavigate();
+    const [form, setForm] = useState({name: '', email: '', password: ''});
 
     const handleChange = (e: any) => {
         setForm({...form, [e.target.name]: e.target.value});
@@ -20,7 +19,7 @@ export default function registerController() {
             successNotification(response.data.message);
             navigate('/login');
         } catch (error: any) {
-            errorNotification(Object.values(error.response?.data?.error));
+            errorNotification(Object.values(error.response.data.error));
         }
     };
 

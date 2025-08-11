@@ -16,4 +16,9 @@ class UserRepository extends CrudRepository implements UserRepositoryInterface
     {
         return $this->model->where('email', $email)->first();
     }
+
+    public function getAllWith(array $relations = [])
+    {
+        return $this->model->with($relations)->get();
+    }
 }

@@ -1,52 +1,70 @@
+import {BASE_URL} from '../config/api.ts';
 import axios from "axios";
 import {useState} from "react";
-import {successNotification, errorNotification} from "../util/Alert";
-
-const BASE_URL = "http://127.0.0.1:8000/api/v1/employee";
+import {successNotification, errorNotification} from "../util/alert.ts";
 
 export default function applyForLeaveController(onClose: () => void) {
-    const [leaveType, setLeaveType] = useState("");
-    const [fromDate, setFromDate] = useState<Date | null>(null);
-    const [toDate, setToDate] = useState<Date | null>(null);
+    const [type, setType] = useState("");
+    const [from, setFrom] = useState<Date | null>(null);
+    const [to, setTo] = useState<Date | null>(null);
 
-    const applyForLeave = async (e: React.FormEvent) => {
+    const formatDate = (date: Date) => {
+        return (
+            date.getFullYear() +
+            "-" +
+            String(date.getMonth() + 1).padStart(2, "0") +
+            "-" +
+            String(date.getDate()).padStart(2, "0")
+        );
+    };
+
+    const getDaysCount = () => {
+        if (from && to) {
+            const diffTime = to.getTime() - from.getTime();
+            return diffTime >= 0 ? Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1 : 0;
+        }
+        return 0;
+    };
+
+    const applyForLeave = async (e: any) => {
         e.preventDefault();
 
-        if (!fromDate || !toDate || !leaveType) {
-            errorNotification("Please fill all fields.");
+        if (!from || !to || !type) {
+            errorNotification("Please fill all fields!");
             return;
         }
 
         try {
-            const access_token = localStorage.getItem("access_token");
-            const response = await axios.post(`${BASE_URL}/apply-for-leave`,
+            const token = localStorage.getItem("access_token");
+            const response = await axios.post(`${BASE_URL}/employee/apply-for-leave`,
                 {
-                    leave_type: leaveType,
-                    from_date: fromDate.toISOString().slice(0, 10),
-                    to_date: toDate.toISOString().slice(0, 10),
+                    type: type,
+                    from: formatDate(from),
+                    to: formatDate(to),
                 },
                 {
-                    headers: {Authorization: `Bearer ${access_token}`,},
+                    headers: {Authorization: `Bearer ${token}`}
                 }
             );
 
             successNotification(response.data.message);
-            setLeaveType("");
-            setFromDate(null);
-            setToDate(null);
+            setType("");
+            setFrom(null);
+            setTo(null);
             onClose();
         } catch (error: any) {
-            errorNotification(Object.values(error.response?.data?.error));
+            errorNotification(Object.values(error.response.data.error));
         }
     };
 
     return {
-        leaveType,
-        fromDate,
-        toDate,
-        setLeaveType,
-        setFromDate,
-        setToDate,
+        type,
+        from,
+        to,
+        setType,
+        setFrom,
+        setTo,
+        getDaysCount,
         applyForLeave,
     };
 }

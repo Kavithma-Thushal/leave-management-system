@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Classes\ErrorResponse;
 use App\Http\Requests\ChangeLeaveStatusRequest;
+use App\Http\Resources\LeaveLogResource;
 use App\Http\Resources\SuccessResource;
 use App\Http\Services\AdminService;
 use Symfony\Component\HttpKernel\Exception\HttpException;
@@ -17,31 +18,26 @@ class AdminController extends Controller
         $this->adminService = $adminService;
     }
 
-    public function viewAllLeaveStatus()
+    public function changeLeaveStatus(ChangeLeaveStatusRequest $request, $id)
     {
         try {
-            $employees = $this->adminService->viewAllLeaveStatus();
+            $data = $this->adminService->changeLeaveStatus($request->validated(), $id);
             return new SuccessResource([
-                'message' => 'View all leave status successfully!',
-                'data' => $employees,
+                'message' => 'Leave status updated successfully!',
+                'data' => new LeaveLogResource($data)
             ]);
         } catch (HttpException $e) {
             ErrorResponse::throwException($e);
         }
     }
 
-    public function changeLeaveStatus(ChangeLeaveStatusRequest $request)
+    public function getEmployeeDetails()
     {
         try {
-            $data = $request->validated();
-
-            $leaveLogId = (int)$data['leave_log_id'];
-            $status = (string)$data['status'];
-
-            $this->adminService->changeLeaveStatus($leaveLogId, $status);
+            $data = $this->adminService->getEmployeeDetails();
             return new SuccessResource([
-                'message' => 'Leave status updated successfully!',
-                'data' => null,
+                'message' => 'Employee details retrieved successfully!',
+                'data' => new SuccessResource($data)
             ]);
         } catch (HttpException $e) {
             ErrorResponse::throwException($e);

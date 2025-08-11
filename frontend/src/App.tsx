@@ -1,6 +1,6 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import {Navbar} from "./views/components/Navbar/Navbar.tsx";
-import {Footer} from "./views/components/Footer/Footer.tsx";
+import {Navbar} from "./views/components/Navbar.tsx";
+import {Footer} from "./views/components/Footer.tsx";
 import Home from './views/pages/Home';
 import Register from './views/pages/Register';
 import Login from './views/pages/Login';

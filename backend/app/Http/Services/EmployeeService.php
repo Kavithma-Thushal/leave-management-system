@@ -2,41 +2,18 @@
 
 namespace App\Http\Services;
 
-use App\Models\LeaveLogs;
-use App\Repositories\Employee\EmployeeRepositoryInterface;
 use App\Repositories\LeaveLogs\LeaveLogsRepositoryInterface;
+use DateTime;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class EmployeeService
 {
-    protected EmployeeRepositoryInterface $employeeRepositoryInterface;
     protected LeaveLogsRepositoryInterface $leaveLogRepositoryInterface;
 
-    public function __construct(EmployeeRepositoryInterface $employeeRepositoryInterface, LeaveLogsRepositoryInterface $leaveLogRepositoryInterface)
+    public function __construct(LeaveLogsRepositoryInterface $leaveLogRepositoryInterface)
     {
-        $this->employeeRepositoryInterface = $employeeRepositoryInterface;
         $this->leaveLogRepositoryInterface = $leaveLogRepositoryInterface;
-    }
-
-    public function getRole()
-    {
-        try {
-            return auth()->user();
-        } catch (HttpException $e) {
-            throw $e;
-        }
-    }
-
-    public function getDetails()
-    {
-        try {
-            $user = auth()->user();
-            $user->load('leaveDetails');
-            return $user;
-        } catch (HttpException $e) {
-            throw $e;
-        }
     }
 
     public function applyForLeave(array $data)
@@ -45,40 +22,22 @@ class EmployeeService
         try {
             $user = auth()->user();
 
+            if (!$user || $user->role !== 'employee') {
+                throw new HttpException(403, 'Unauthorized access!');
+            }
+
             // Calculate total days
-            $fromDate = new \DateTime($data['from_date']);
-            $toDate = new \DateTime($data['to_date']);
+            $fromDate = new DateTime($data['from']);
+            $toDate = new DateTime($data['to']);
             $interval = $fromDate->diff($toDate);
             $daysRequested = $interval->days + 1;
 
-            // Get user's leave details
-            $leaveDetails = $user->leaveDetails;
-            if (!$leaveDetails) {
-                throw new \Exception("Leave details not found for user.");
-            }
-
-            $leaveType = $data['leave_type'];
-
-            // Check if leave type exists in leave details
-            if (!in_array($leaveType, ['annual', 'casual'])) {
-                throw new \Exception("Invalid leave type: {$leaveType}");
-            }
-
-            // Check leave balance
-            $currentBalance = $leaveDetails->$leaveType;
-
-            if ($daysRequested > $currentBalance) {
-                throw new \Exception("Insufficient {$leaveType} leave balance. Requested: {$daysRequested}, Available: {$currentBalance}");
-            }
-
-            // Create record in leave log table
             $leave = $this->leaveLogRepositoryInterface->create([
                 'user_id' => $user->id,
-                'leave_type' => $leaveType,
-                'from_date' => $data['from_date'],
-                'to_date' => $data['to_date'],
+                'type' => $data['type'],
+                'from' => $data['from'],
+                'to' => $data['to'],
                 'count' => $daysRequested,
-                'status' => 'Pending',
             ]);
 
             DB::commit();
@@ -89,11 +48,31 @@ class EmployeeService
         }
     }
 
-    public function viewLeaveStatus()
+    public function getLeaveLogs()
     {
         try {
             $user = auth()->user();
+
+            if (!$user || $user->role !== 'employee') {
+                throw new HttpException(403, 'Unauthorized access!');
+            }
+
             return $user->leaveLogs()->orderByDesc('created_at')->get();
+        } catch (HttpException $e) {
+            throw $e;
+        }
+    }
+
+    public function getLeaveDetails()
+    {
+        try {
+            $user = auth()->user();
+
+            if (!$user || $user->role !== 'employee') {
+                throw new HttpException(403, 'Unauthorized access!');
+            }
+
+            return $user->load('leaveDetails');
         } catch (HttpException $e) {
             throw $e;
         }

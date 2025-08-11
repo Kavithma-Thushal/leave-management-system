@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Classes\ErrorResponse;
-use App\Http\Requests\LeaveRequest;
+use App\Http\Requests\ApplyForLeaveRequest;
+use App\Http\Resources\LeaveLogResource;
 use App\Http\Resources\SuccessResource;
 use App\Http\Services\EmployeeService;
 use Symfony\Component\HttpKernel\Exception\HttpException;
@@ -17,52 +18,39 @@ class EmployeeController extends Controller
         $this->employeeService = $employeeService;
     }
 
-    public function getRole()
+    public function applyForLeave(ApplyForLeaveRequest $request)
     {
         try {
-            $user = $this->employeeService->getRole();
-            return new SuccessResource([
-                'message' => 'User role retrieved successfully!',
-                'data' => $user->role
-            ]);
-        } catch (HttpException $e) {
-            ErrorResponse::throwException($e);
-        }
-    }
-
-    public function getDetails()
-    {
-        try {
-            $userDetails = $this->employeeService->getDetails();
-            return new SuccessResource([
-                'message' => 'User details retrieved successfully!',
-                'data' => $userDetails
-            ]);
-        } catch (HttpException $e) {
-            ErrorResponse::throwException($e);
-        }
-    }
-
-    public function applyForLeave(LeaveRequest $request)
-    {
-        try {
-            $leave = $this->employeeService->applyForLeave($request->validated());
+            $data = $this->employeeService->applyForLeave($request->validated());
             return new SuccessResource([
                 'message' => 'Leave applied successfully!',
-                'data' => $leave
+                'data' => new LeaveLogResource($data)
             ]);
         } catch (HttpException $e) {
             ErrorResponse::throwException($e);
         }
     }
 
-    public function viewLeaveStatus()
+    public function getLeaveLogs()
     {
         try {
-            $leaves = $this->employeeService->viewLeaveStatus();
+            $data = $this->employeeService->getLeaveLogs();
             return new SuccessResource([
-                'message' => 'Viewed leave status successfully!',
-                'data' => $leaves
+                'message' => 'Leave logs retrieved successfully!',
+                'data' => LeaveLogResource::collection($data)
+            ]);
+        } catch (HttpException $e) {
+            ErrorResponse::throwException($e);
+        }
+    }
+
+    public function getLeaveDetails()
+    {
+        try {
+            $data = $this->employeeService->getLeaveDetails();
+            return new SuccessResource([
+                'message' => 'Leave details retrieved successfully!',
+                'data' => new SuccessResource($data)
             ]);
         } catch (HttpException $e) {
             ErrorResponse::throwException($e);

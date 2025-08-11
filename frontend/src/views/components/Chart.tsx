@@ -7,7 +7,9 @@ type ChartProps = {
 export default function Chart({employees}: ChartProps) {
     const chartData = useMemo(() => {
         const totalLeavesPerEmployee = employees.map((emp) => {
-            const totalLeaves = emp.leave_logs.reduce((sum: number, log: any) => sum + (log.count || 0), 0);
+            const totalLeaves = emp.leave_logs
+                .filter((log: any) => log.status === 'approved')
+                .reduce((sum: number, log: any) => sum + (log.count || 0), 0);
             return {
                 name: emp.name,
                 value: totalLeaves,
@@ -18,8 +20,12 @@ export default function Chart({employees}: ChartProps) {
 
     const total = chartData.reduce((sum, item) => sum + item.value, 0);
 
-    const getColor = (i: number) =>
-        ['#1E90FF', '#00C49F', '#FFBB28', '#FF8042', '#AF19FF', '#FF6666'][i % 6];
+    const COLORS = [
+        '#1E90FF', '#00C49F', '#FFBB28', '#FF8042', '#AF19FF',
+        '#FF6666', '#2E8B57', '#cd2d4d', '#FF1493', '#4e4347',
+    ];
+
+    const getColor = (i: number) => COLORS[i % COLORS.length];
 
     const paths = useMemo(() => {
         let cumulativePercent = 0;
@@ -54,8 +60,8 @@ export default function Chart({employees}: ChartProps) {
     if (chartData.length === 0) return null;
 
     return (
-        <div className="flex flex-col items-center mb-12 mt-12">
-            <svg viewBox="-1 -1 2 2" style={{transform: 'rotate(-90deg)', width: 250, height: 250}}>
+        <div className="flex flex-col items-center m-10">
+            <svg viewBox="-1 -1 2 2" style={{transform: 'rotate(-90deg)', width: 300, height: 300}}>
                 {paths.map((path, i) => (
                     <path key={i} d={path.d} fill={path.color} stroke="white" strokeWidth="0.005"/>
                 ))}
@@ -63,7 +69,7 @@ export default function Chart({employees}: ChartProps) {
             <div className="mt-6 flex flex-row flex-wrap gap-6 justify-center">
                 {paths.map((p, i) => (
                     <div key={i} className="flex items-center space-x-1">
-                        <span className="w-4 h-4 inline-block rounded" style={{ backgroundColor: p.color }}></span>
+                        <span className="w-4 h-4 inline-block rounded" style={{backgroundColor: p.color}}></span>
                         <span>{p.name}</span>
                     </div>
                 ))}

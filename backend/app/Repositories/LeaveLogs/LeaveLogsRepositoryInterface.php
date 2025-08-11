@@ -7,7 +7,5 @@ use App\Repositories\CrudRepositoryInterface;
 
 interface LeaveLogsRepositoryInterface extends CrudRepositoryInterface
 {
-    public function updateLeaveStatus(int $leaveLogId, string $status): void;
-
-    public function findByIdOrFail(int $id): LeaveLogs;
+    public function updateLeaveStatus(int $leaveId, string $status);
 }

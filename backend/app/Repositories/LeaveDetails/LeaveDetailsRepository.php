@@ -12,8 +12,8 @@ class LeaveDetailsRepository extends CrudRepository implements LeaveDetailsRepos
         parent::__construct($model);
     }
 
-    public function findByUserIdOrFail(int $userId): LeaveDetails
+    public function findById(int $userId)
     {
-        return $this->model->where('user_id', $userId)->firstOrFail();
+        return $this->model->where('user_id', $userId)->first();
     }
 }

@@ -35,9 +35,11 @@ export default function Register() {
                         onChange={handleChange}
                         className="w-full bg-darkBlue text-neonBlue border border-neonBlue rounded-lg px-6 py-3 shadow-inner focus:outline-none focus:ring-4 focus:ring-neonBlue focus:border-transparent transition"
                     />
-                    <button type="submit"
-                            className="bg-neonBlue text-darkBlue px-3 py-3 rounded-lg font-semibold shadow-lg hover:scale-105 transition duration-300 w-full">REGISTER
-                    </button>
+                    <div className="flex justify-center">
+                        <button type="submit"
+                                className="bg-neonBlue text-darkBlue py-3 rounded-lg font-semibold shadow-lg hover:scale-105 transition duration-300 px-6 mt-2">REGISTER
+                        </button>
+                    </div>
                 </form>
             </div>
         </div>

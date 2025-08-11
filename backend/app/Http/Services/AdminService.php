@@ -2,47 +2,29 @@
 
 namespace App\Http\Services;
 
-use App\Repositories\Employee\EmployeeRepositoryInterface;
 use App\Repositories\LeaveDetails\LeaveDetailsRepositoryInterface;
 use App\Repositories\LeaveLogs\LeaveLogsRepositoryInterface;
+use App\Repositories\User\UserRepositoryInterface;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class AdminService
 {
-    protected EmployeeRepositoryInterface $employeeRepositoryInterface;
+    protected UserRepositoryInterface $userRepositoryInterface;
     protected LeaveDetailsRepositoryInterface $leaveDetailsRepositoryInterface;
     protected LeaveLogsRepositoryInterface $leaveLogsRepositoryInterface;
 
-    public function __construct(
-        EmployeeRepositoryInterface     $employeeRepositoryInterface,
-        LeaveDetailsRepositoryInterface $leaveDetailsRepositoryInterface,
-        LeaveLogsRepositoryInterface    $leaveLogsRepositoryInterface
-    )
+    public function __construct(UserRepositoryInterface $userRepositoryInterface, LeaveDetailsRepositoryInterface $leaveDetailsRepositoryInterface, LeaveLogsRepositoryInterface $leaveLogsRepositoryInterface)
     {
-        $this->employeeRepositoryInterface = $employeeRepositoryInterface;
+        $this->userRepositoryInterface = $userRepositoryInterface;
         $this->leaveDetailsRepositoryInterface = $leaveDetailsRepositoryInterface;
         $this->leaveLogsRepositoryInterface = $leaveLogsRepositoryInterface;
     }
 
-    public function viewAllLeaveStatus()
+    public function changeLeaveStatus(array $data, int $leaveId)
     {
-        try {
-            $admin = auth()->user();
-
-            if ($admin->role !== 'admin') {
-                throw new HttpException(403, 'Unauthorized access!');
-            }
-
-            $employees = $this->employeeRepositoryInterface->getAllWith(['leaveDetails', 'leaveLogs']);
-            $filtered = $employees->reject(fn($user) => $user->role === 'admin');
-            return $filtered;
-        } catch (HttpException $e) {
-            throw $e;
-        }
-    }
-
-    public function changeLeaveStatus(int $leaveLogId, string $status): void
-    {
+        DB::beginTransaction();
         try {
             $admin = auth()->user();
 
@@ -50,13 +32,18 @@ class AdminService
                 throw new HttpException(403, 'Unauthorized access!');
             }
 
-            $leaveLog = $this->leaveLogsRepositoryInterface->findByIdOrFail($leaveLogId);
+            $leaveLog = $this->leaveLogsRepositoryInterface->find($leaveId);
+            if (!$leaveLog) {
+                throw new HttpException(404, "Leave Id not found!");
+            }
 
-            if ($status === 'Approved') {
+            $status = $data['status'];
+
+            if ($status === 'approved') {
                 $userId = $leaveLog->user_id;
-                $type = strtolower($leaveLog->leave_type);
-                $leaveDetails = $this->leaveDetailsRepositoryInterface->findByUserIdOrFail($userId);
-                $days = \Carbon\Carbon::parse($leaveLog->from_date)->diffInDays($leaveLog->to_date) + 1;
+                $type = $leaveLog->type;
+                $leaveDetails = $this->leaveDetailsRepositoryInterface->findById($userId);
+                $days = Carbon::parse($leaveLog->from)->diffInDays($leaveLog->to) + 1;
 
                 if ($leaveDetails->{$type} < $days) {
                     throw new HttpException(400, 'Insufficient leave balance!');
@@ -66,7 +53,28 @@ class AdminService
                 $leaveDetails->save();
             }
 
-            $this->leaveLogsRepositoryInterface->updateLeaveStatus($leaveLogId, $status);
+            $updatedLeave = $this->leaveLogsRepositoryInterface->updateLeaveStatus($leaveId, $status);
+
+            DB::commit();
+            return $updatedLeave;
+        } catch (HttpException $e) {
+            DB::rollBack();
+            throw $e;
+        }
+    }
+
+    public function getEmployeeDetails()
+    {
+        try {
+            $admin = auth()->user();
+
+            if ($admin->role !== 'admin') {
+                throw new HttpException(403, 'Unauthorized access!');
+            }
+
+            $employees = $this->userRepositoryInterface->getAllWith(['leaveDetails', 'leaveLogs']);
+            $filteredEmployees = $employees->reject(fn($user) => $user->role === 'admin');
+            return $filteredEmployees;
         } catch (HttpException $e) {
             throw $e;
         }

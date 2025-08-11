@@ -12,15 +12,11 @@ class LeaveLogsRepository extends CrudRepository implements LeaveLogsRepositoryI
         parent::__construct($model);
     }
 
-    public function updateLeaveStatus(int $leaveLogId, string $status): void
+    public function updateLeaveStatus(int $leaveId, string $status)
     {
-        $leaveLog = $this->model->findOrFail($leaveLogId);
+        $leaveLog = $this->model->find($leaveId);
         $leaveLog->status = $status;
         $leaveLog->save();
-    }
-
-    public function findByIdOrFail(int $id): LeaveLogs
-    {
-        return $this->model->findOrFail($id);
+        return $leaveLog;
     }
 }

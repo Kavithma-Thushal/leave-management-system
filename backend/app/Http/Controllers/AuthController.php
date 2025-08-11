@@ -26,7 +26,8 @@ class AuthController extends Controller
             $data = $this->authService->register($request->validated());
             return new SuccessResource([
                 'message' => 'User registered successfully!',
-                'data' => new UserResource($data)]);
+                'data' => new UserResource($data)
+            ]);
         } catch (HttpException $e) {
             ErrorResponse::throwException($e);
         }
@@ -38,7 +39,8 @@ class AuthController extends Controller
             $data = $this->authService->login($request->validated());
             return new SuccessResource([
                 'message' => 'User logged in successfully!',
-                'data' => new LoginResource($data)]);
+                'data' => new LoginResource($data)
+            ]);
         } catch (HttpException $e) {
             ErrorResponse::throwException($e);
         }

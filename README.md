@@ -21,12 +21,14 @@ experience for both **Employees** and **Admins** through intuitive web interface
 
 ## 🚀 Features
 
-### 👨‍💼 Employee
+### 👷 Employee
+
 ✅ Register/Login<br/>
 ✅ Apply for leave<br/>
 ✅ View leave status<br/>
 
-### 👨‍💻 Admin
+### 👨‍💼 Admin
+
 ✅ Login<br/>
 ✅ View all leave requests<br/>
 ✅ Approve/Reject leave<br/>
@@ -47,28 +49,32 @@ experience for both **Employees** and **Admins** through intuitive web interface
 ✅ Employee Dashboard: Leave application form, Leave status list<br/>
 ✅ Admin Dashboard: Leave approval list, Approve/Reject buttons, Users overview<br/>
 
+## 🔄 Seeding Information
+
+### 👨‍💼 Admin
+
+✅ Email: `admin@example.com`<br/>
+✅ Password: `password`<br/>
+
+### 👷 Employee
+
+✅ Email: `employee1@example.com`<br/>
+✅ Password: `password`<br/>
+
 ## ▶️ How to Run the Project
 
 ### ⚛️ Frontend (React)
+
 1. Install dependencies - `npm install`
 2. Start the development server - `npm run dev`
 
 ### 📦 Backend (Laravel)
+
 1. Install dependencies - `composer install`
 2. Prepare the database - `php artisan migrate`
-3. Create Passport personal access client - `php artisan passport:client --personal`
-4. Seed the database - `php artisan db:seed`
+3. Seed the database - `php artisan db:seed`
+4. Create Passport personal access client - `php artisan passport:client --personal`
 5. Start the Laravel server - `php artisan serve`
-
-## 🔄 Seeding Information
-
-### 👨‍💼 Admin
-✅ Email: `admin@example.com`<br/>
-✅ Password: `password`<br/>
-
-### 👨‍💻 Employee
-✅ Email: `employee1@example.com`<br/>
-✅ Password: `password`<br/>
 
 ## 📸 Screenshots
 
@@ -88,10 +94,17 @@ experience for both **Employees** and **Admins** through intuitive web interface
 
 <img src="ss/Employee-Dashboard.png">
 
+### Apply For Leave
+
+<img src="ss/Apply-For-Leave.png">
+
 ### Admin Dashboard
 
 <img src="ss/Admin-Dashboard.png">
-<img src="ss/Admin-Dashboard-2.png">
+
+### Leave-Analysis
+
+<img src="ss/Leave-Analysis.png">
 
 ### Codes
 

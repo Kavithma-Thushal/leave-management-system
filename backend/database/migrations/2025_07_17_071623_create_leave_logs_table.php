@@ -13,10 +13,11 @@ return new class extends Migration {
         Schema::create('leave_logs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('leave_type');
-            $table->date('from_date');
-            $table->date('to_date');
-            $table->string('status');
+            $table->string('type');
+            $table->date('from');
+            $table->date('to');
+            $table->integer('count');
+            $table->string('status')->default('pending');
             $table->timestamps();
         });
     }

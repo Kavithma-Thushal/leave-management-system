@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ChangeLeaveStatusRequest extends FormRequest
+class ApplyForLeaveRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -14,7 +14,9 @@ class ChangeLeaveStatusRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'status' => 'required|in:approved,rejected',
+            'type' => ['required', 'in:annual,casual'],
+            'from' => ['required', 'date', 'after:today'],
+            'to' => ['required', 'date', 'after_or_equal:from'],
         ];
     }
 }
