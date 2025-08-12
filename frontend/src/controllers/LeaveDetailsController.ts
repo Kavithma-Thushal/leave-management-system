@@ -3,7 +3,7 @@ import axios from 'axios';
 import {useState, useEffect} from 'react';
 import {errorNotification} from '../util/alert.ts';
 
-export default function leaveDetailsController() {
+export default function LeaveDetailsController() {
     const [leaveDetails, setLeaveDetails] = useState(null);
 
     useEffect(() => {

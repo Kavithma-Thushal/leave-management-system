@@ -1,11 +1,11 @@
 import {useEffect} from 'react';
 import Chart from '../components/Chart.tsx';
-import employeeDetailsController from '../../controllers/EmployeeDetailsController.ts';
-import changeLeaveStatusController from '../../controllers/ChangeLeaveStatusController';
+import EmployeeDetailsController from '../../controllers/EmployeeDetailsController.ts';
+import ChangeLeaveStatusController from '../../controllers/ChangeLeaveStatusController';
 
 export default function AdminDashboard() {
-    const {employeeDetails, getEmployeeDetails} = employeeDetailsController();
-    const {changeLeaveStatus} = changeLeaveStatusController();
+    const {employeeDetails, getEmployeeDetails} = EmployeeDetailsController();
+    const {changeLeaveStatus} = ChangeLeaveStatusController();
 
     useEffect(() => {
         getEmployeeDetails();

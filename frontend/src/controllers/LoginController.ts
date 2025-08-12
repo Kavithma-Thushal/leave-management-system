@@ -4,7 +4,7 @@ import {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {successNotification, errorNotification} from '../util/alert.ts';
 
-export default function loginController() {
+export default function LoginController() {
     const navigate = useNavigate();
     const [form, setForm] = useState({email: '', password: ''});
 

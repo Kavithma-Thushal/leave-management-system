@@ -2,7 +2,7 @@ import {BASE_URL} from '../config/api.ts';
 import axios from 'axios';
 import {errorNotification, successNotification} from '../util/alert.ts';
 
-export default function changeLeaveStatusController() {
+export default function ChangeLeaveStatusController() {
     const changeLeaveStatus = async (leaveId: number, status: string) => {
         try {
             const token = localStorage.getItem('access_token');

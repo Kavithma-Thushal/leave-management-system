@@ -3,7 +3,7 @@ import axios from "axios";
 import {useState} from "react";
 import {successNotification, errorNotification} from "../util/alert.ts";
 
-export default function applyForLeaveController(onClose: () => void) {
+export default function ApplyForLeaveController(onClose: () => void) {
     const [type, setType] = useState("");
     const [from, setFrom] = useState<Date | null>(null);
     const [to, setTo] = useState<Date | null>(null);

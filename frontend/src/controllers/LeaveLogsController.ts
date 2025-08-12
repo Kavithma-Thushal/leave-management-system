@@ -3,7 +3,7 @@ import axios from 'axios';
 import {useState, useEffect} from 'react';
 import {errorNotification} from '../util/alert.ts';
 
-export default function leaveLogsController() {
+export default function LeaveLogsController() {
     const [leaveLogs, setLeaveLogs] = useState<any[]>([]);
 
     useEffect(() => {

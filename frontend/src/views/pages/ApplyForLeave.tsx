@@ -1,13 +1,13 @@
 import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
-import applyForLeaveController from "../../controllers/ApplyForLeaveController";
+import ApplyForLeaveController from "../../controllers/ApplyForLeaveController";
 
 type ApplyForLeaveProps = {
     onClose: () => void;
 };
 
 export default function ApplyForLeave({onClose}: ApplyForLeaveProps) {
-    const {type, from, to, setType, setFrom, setTo, getDaysCount, applyForLeave} = applyForLeaveController(onClose);
+    const {type, from, to, setType, setFrom, setTo, getDaysCount, applyForLeave} = ApplyForLeaveController(onClose);
 
     return (
         <div className="fixed inset-0 flex items-center justify-center backdrop-blur-lg mt-10">

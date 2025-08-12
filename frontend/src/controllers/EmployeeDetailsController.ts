@@ -3,7 +3,7 @@ import axios from 'axios';
 import {useState, useEffect} from 'react';
 import {errorNotification} from '../util/alert.ts';
 
-export default function employeeDetailsController() {
+export default function EmployeeDetailsController() {
     const [employeeDetails, setEmployeeDetails] = useState<any>([]);
 
     useEffect(() => {

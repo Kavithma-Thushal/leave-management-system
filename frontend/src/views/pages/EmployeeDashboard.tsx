@@ -1,13 +1,13 @@
 import {Link} from "react-router-dom";
 import {useState} from "react";
 import ApplyForLeave from "./ApplyForLeave";
-import leaveLogsController from "../../controllers/LeaveLogsController.ts";
-import leaveDetailsController from "../../controllers/LeaveDetailsController.ts";
+import LeaveLogsController from "../../controllers/LeaveLogsController.ts";
+import LeaveDetailsController from "../../controllers/LeaveDetailsController.ts";
 
 export default function EmployeeDashboard() {
     const [showPopup, setShowPopup] = useState(false);
-    const {leaveLogs, fetchLeaveLogs} = leaveLogsController();
-    const {leaveDetails, fetchLeaveDetails} = leaveDetailsController();
+    const {leaveLogs, fetchLeaveLogs} = LeaveLogsController();
+    const {leaveDetails, fetchLeaveDetails} = LeaveDetailsController();
 
     return (
         <div className="min-h-screen bg-darkBlue py-6 text-neonBlue">
