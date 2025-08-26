@@ -21,7 +21,9 @@ export default function LoginController() {
             const access_token = response.data.data.access_token;
             localStorage.setItem('access_token', access_token);
 
-            const role = response.data.data.user_data.role;
+            const roles = response.data.data.user_data.roles;
+            const role = roles[0];
+
             if (role === 'admin') {
                 navigate('/admin-dashboard');
             } else {

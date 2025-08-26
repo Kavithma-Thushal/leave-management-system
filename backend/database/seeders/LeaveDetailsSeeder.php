@@ -10,7 +10,7 @@ class LeaveDetailsSeeder extends Seeder
 {
     public function run(): void
     {
-        $employees = User::where('role', 'employee')->get();
+        $employees = User::role('employee')->get();
         foreach ($employees as $employee) {
             LeaveDetails::firstOrCreate(
                 ['user_id' => $employee->id],

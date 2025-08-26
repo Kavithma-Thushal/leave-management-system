@@ -14,24 +14,27 @@ class UserSeeder extends Seeder
             [
                 'name' => 'Admin',
                 'email' => 'admin@example.com',
-                'role' => 'admin',
                 'password' => Hash::make('password'),
+                'role' => 'admin',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'name' => 'Employee',
                 'email' => 'employee1@example.com',
-                'role' => 'employee',
                 'password' => Hash::make('password'),
+                'role' => 'employee',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
         ];
 
         foreach ($data as $userData) {
+            $role = $userData['role'];
+            unset($userData['role']);
+
             $user = User::updateOrCreate(['email' => $userData['email']], $userData);
-            $user->assignRole($userData['role']);
+            $user->assignRole($role);
         }
     }
 }

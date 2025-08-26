@@ -10,7 +10,6 @@ Route::prefix('v1')->group(function () {
     Route::post('/login', [AuthController::class, 'login']);
 
     Route::group(['middleware' => ['auth:api']], function () {
-
         Route::prefix('employee')->group(function () {
             Route::post('apply-for-leave', [EmployeeController::class, 'applyForLeave'])->middleware('permission:apply-for-leave');
             Route::get('get-leave-logs', [EmployeeController::class, 'getLeaveLogs'])->middleware('permission:get-leave-logs');
