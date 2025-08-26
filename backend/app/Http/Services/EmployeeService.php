@@ -48,7 +48,6 @@ class EmployeeService
     {
         try {
             $user = auth()->user();
-
             return $user->leaveLogs()->orderByDesc('created_at')->get();
         } catch (HttpException $e) {
             throw $e;
@@ -59,7 +58,6 @@ class EmployeeService
     {
         try {
             $user = auth()->user();
-
             return $user->load('leaveDetails');
         } catch (HttpException $e) {
             throw $e;

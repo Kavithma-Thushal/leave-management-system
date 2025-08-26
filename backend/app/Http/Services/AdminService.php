@@ -26,8 +26,6 @@ class AdminService
     {
         DB::beginTransaction();
         try {
-            $admin = auth()->user();
-
             $leaveLog = $this->leaveLogsRepositoryInterface->find($leaveId);
             if (!$leaveLog) {
                 throw new HttpException(404, "Leave Id not found!");
@@ -62,8 +60,6 @@ class AdminService
     public function getEmployeeDetails()
     {
         try {
-            $admin = auth()->user();
-
             $employees = $this->userRepositoryInterface->getAllWith(['leaveDetails', 'leaveLogs']);
             $filteredEmployees = $employees->reject(fn($user) => $user->role === 'admin');
             return $filteredEmployees;
