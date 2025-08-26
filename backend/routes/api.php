@@ -12,14 +12,14 @@ Route::prefix('v1')->group(function () {
     Route::group(['middleware' => ['auth:api']], function () {
 
         Route::prefix('employee')->group(function () {
-            Route::post('apply-for-leave', [EmployeeController::class, 'applyForLeave']);
-            Route::get('get-leave-logs', [EmployeeController::class, 'getLeaveLogs']);
-            Route::get('get-leave-details', [EmployeeController::class, 'getLeaveDetails']);
+            Route::post('apply-for-leave', [EmployeeController::class, 'applyForLeave'])->middleware('permission:apply-for-leave');
+            Route::get('get-leave-logs', [EmployeeController::class, 'getLeaveLogs'])->middleware('permission:get-leave-logs');
+            Route::get('get-leave-details', [EmployeeController::class, 'getLeaveDetails'])->middleware('permission:get-leave-details');
         });
 
         Route::prefix('admin')->group(function () {
-            Route::patch('change-leave-status/{id}', [AdminController::class, 'changeLeaveStatus']);
-            Route::get('get-employee-details', [AdminController::class, 'getEmployeeDetails']);
+            Route::patch('change-leave-status/{id}', [AdminController::class, 'changeLeaveStatus'])->middleware('permission:change-leave-status');
+            Route::get('get-employee-details', [AdminController::class, 'getEmployeeDetails'])->middleware('permission:get-employee-details');
         });
     });
 });

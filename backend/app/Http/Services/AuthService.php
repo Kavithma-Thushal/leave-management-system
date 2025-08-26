@@ -26,6 +26,8 @@ class AuthService
         DB::beginTransaction();
         try {
             $user = $this->userRepositoryInterface->create($data);
+            $user->assignRole('employee');
+
             $this->leaveDetailsRepositoryInterface->create([
                 'user_id' => $user->id,
                 'annual' => 20,

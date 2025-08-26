@@ -28,10 +28,6 @@ class AdminService
         try {
             $admin = auth()->user();
 
-            if (!$admin || $admin->role !== 'admin') {
-                throw new HttpException(403, 'Unauthorized access!');
-            }
-
             $leaveLog = $this->leaveLogsRepositoryInterface->find($leaveId);
             if (!$leaveLog) {
                 throw new HttpException(404, "Leave Id not found!");
@@ -67,10 +63,6 @@ class AdminService
     {
         try {
             $admin = auth()->user();
-
-            if ($admin->role !== 'admin') {
-                throw new HttpException(403, 'Unauthorized access!');
-            }
 
             $employees = $this->userRepositoryInterface->getAllWith(['leaveDetails', 'leaveLogs']);
             $filteredEmployees = $employees->reject(fn($user) => $user->role === 'admin');

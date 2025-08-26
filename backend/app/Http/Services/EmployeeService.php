@@ -22,10 +22,6 @@ class EmployeeService
         try {
             $user = auth()->user();
 
-            if (!$user || $user->role !== 'employee') {
-                throw new HttpException(403, 'Unauthorized access!');
-            }
-
             // Calculate total days
             $fromDate = new DateTime($data['from']);
             $toDate = new DateTime($data['to']);
@@ -53,10 +49,6 @@ class EmployeeService
         try {
             $user = auth()->user();
 
-            if (!$user || $user->role !== 'employee') {
-                throw new HttpException(403, 'Unauthorized access!');
-            }
-
             return $user->leaveLogs()->orderByDesc('created_at')->get();
         } catch (HttpException $e) {
             throw $e;
@@ -67,10 +59,6 @@ class EmployeeService
     {
         try {
             $user = auth()->user();
-
-            if (!$user || $user->role !== 'employee') {
-                throw new HttpException(403, 'Unauthorized access!');
-            }
 
             return $user->load('leaveDetails');
         } catch (HttpException $e) {
